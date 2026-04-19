@@ -94,12 +94,19 @@ export default function HomePage() {
         @keyframes shimmer-bar { 0%{background-position:0% 0%} 100%{background-position:200% 0%} }
         @keyframes ping-ring   { 0%{transform:scale(1);opacity:1} 100%{transform:scale(2.2);opacity:0} }
         @keyframes float-y     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+        @media (max-width: 640px) {
+          .page-deco { display: none !important; }
+          .input-prefix { display: none !important; }
+          .input-pixel-icon { display: none !important; }
+          .analyze-btn { font-size: 0.8rem !important; padding: 0.6rem 0.75rem !important; }
+          .input-row { padding-left: 0.75rem !important; clip-path: polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 4px),0 calc(100% - 4px)) !important; }
+        }
       `}</style>
 
 
 
-      {/* ── Big pixel cross — top right (matches image exactly) ────────────── */}
-      <div style={{
+      {/* ── Big pixel cross — top right ─────────────────────────────────────── */}
+      <div className="page-deco" style={{
         position: "fixed", top: "24px", right: "60px",
         animation: "float-y 4s ease-in-out infinite",
         zIndex: 1,
@@ -108,7 +115,7 @@ export default function HomePage() {
       </div>
 
       {/* ── Small pixel cluster — mid left ─────────────────────────────────── */}
-      <div style={{
+      <div className="page-deco" style={{
         position: "fixed", left: "80px", top: "52%",
         animation: "float-y 5s ease-in-out infinite 1s",
         zIndex: 1, opacity: 0.7,
@@ -117,7 +124,7 @@ export default function HomePage() {
       </div>
 
       {/* ── Pixel cluster — bottom left ─────────────────────────────────────── */}
-      <div style={{
+      <div className="page-deco" style={{
         position: "fixed", bottom: "100px", left: "120px",
         animation: "float-y 6s ease-in-out infinite 0.5s",
         zIndex: 1,
@@ -126,7 +133,7 @@ export default function HomePage() {
       </div>
 
       {/* ── Small plus — bottom right ───────────────────────────────────────── */}
-      <div style={{
+      <div className="page-deco" style={{
         position: "fixed", bottom: "80px", right: "160px",
         opacity: 0.4, zIndex: 1,
       }}>
@@ -212,7 +219,7 @@ export default function HomePage() {
               : "drop-shadow(0 0 8px rgba(34,68,255,0.28))",
             transition: "filter 0.2s",
           }}>
-          <div style={{
+          <div className="input-row" style={{
             display: "flex",
             alignItems: "center",
             background: "var(--bg)",
@@ -223,7 +230,7 @@ export default function HomePage() {
             transition: "border-color 0.2s",
           }}>
             {/* Pixel icon on left */}
-            <div style={{
+            <div className="input-pixel-icon" style={{
               display: "flex", alignItems: "center",
               paddingLeft: "0.875rem",
               paddingRight: "0.5rem",
@@ -233,7 +240,7 @@ export default function HomePage() {
             </div>
 
             {/* Prefix */}
-            <span style={{
+            <span className="input-prefix" style={{
               fontFamily: "'JetBrains Mono', monospace",
               fontSize: "0.875rem",
               color: "var(--text-muted)",

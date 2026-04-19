@@ -455,38 +455,50 @@ export default function ResultClient({ username, initialData, isFreshScan }: Pro
         @keyframes skeleton-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
         @keyframes shimmer-bar{0%{background-position:0% 0%}100%{background-position:200% 0%}}
         @keyframes float-y{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+        @media (max-width: 640px) {
+          .result-deco { display: none !important; }
+          .stats-3-grid { gap: 0.5rem !important; }
+          .stats-3-grid > div { padding: 0.75rem 0.375rem !important; }
+          .stat-num { font-size: 1.2rem !important; }
+          .stat-lbl { font-size: 0.6rem !important; }
+          .score-compare { flex-direction: column !important; align-items: center !important; gap: 0.75rem !important; }
+          .score-compare .arrow-sep { display: none !important; }
+          .score-compare .gain-pill { border-left: none !important; border-top: 1px solid var(--border) !important; padding-left: 0 !important; padding-top: 0.5rem !important; }
+          .result-inner { padding-left: 0 !important; padding-right: 0 !important; }
+          .nav-username { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+        }
       `}</style>
 
       {/* Progress bar */}
 
       {/* ── Large pixel cross — top right ── */}
-      <div style={{ position: "fixed", top: "20px", right: "20px", zIndex: 0, animation: "float-y 4s ease-in-out infinite", pointerEvents: "none" }}>
+      <div className="result-deco" style={{ position: "fixed", top: "20px", right: "20px", zIndex: 0, animation: "float-y 4s ease-in-out infinite", pointerEvents: "none" }}>
         <PixelCross size={110} color="#2244ff" />
       </div>
 
       {/* ── Small pixel cross — mid left ── */}
-      <div style={{ position: "fixed", top: "35%", left: "40px", zIndex: 0, opacity: 0.7, animation: "float-y 5s ease-in-out infinite 1s", pointerEvents: "none" }}>
+      <div className="result-deco" style={{ position: "fixed", top: "35%", left: "40px", zIndex: 0, opacity: 0.7, animation: "float-y 5s ease-in-out infinite 1s", pointerEvents: "none" }}>
         <PixelCross size={44} color="#2244ff" />
       </div>
 
       {/* ── Pixel cluster — bottom left ── */}
-      <div style={{ position: "fixed", bottom: "60px", left: "60px", zIndex: 0, animation: "float-y 6s ease-in-out infinite 0.5s", pointerEvents: "none" }}>
+      <div className="result-deco" style={{ position: "fixed", bottom: "60px", left: "60px", zIndex: 0, animation: "float-y 6s ease-in-out infinite 0.5s", pointerEvents: "none" }}>
         <PixelCluster color="#2244ff" />
       </div>
 
       {/* ── Small plus — bottom right ── */}
-      <div style={{ position: "fixed", bottom: "80px", right: "160px", zIndex: 0, opacity: 0.4, pointerEvents: "none" }}>
+      <div className="result-deco" style={{ position: "fixed", bottom: "80px", right: "160px", zIndex: 0, opacity: 0.4, pointerEvents: "none" }}>
         <PixelPlus color="#2244ff" />
       </div>
 
-      <div style={{ maxWidth: "720px", margin: "0 auto", position: "relative", zIndex: 2 }}>
+      <div className="result-inner" style={{ maxWidth: "720px", margin: "0 auto", position: "relative", zIndex: 2 }}>
         {/* Nav */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "2.5rem", paddingTop: "1.25rem" }}>
           <button className="result-back-btn" onClick={() => router.push("/")} style={{ background: "#2244ff", border: "none", borderRadius: "0", color: "#fff", cursor: "pointer", fontFamily: "'JetBrains Mono',monospace", fontSize: "0.875rem", fontWeight: 700, padding: "0.6rem 1.4rem", transition: "all 0.15s ease", whiteSpace: "nowrap" }}
             >
             back <span className="cta-arrow">{"<-"}</span>
           </button>
-          <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.8125rem", color: "var(--text-muted)" }}>
+          <span className="nav-username" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.8125rem", color: "var(--text-muted)" }}>
             github.com/<span style={{ color: "var(--cyan)" }}>{username}</span>
           </span>
         </div>
@@ -578,7 +590,7 @@ export default function ResultClient({ username, initialData, isFreshScan }: Pro
               </div>
 
               {phase === "full" && !isPerfectScore && (
-                <div className="fade-in" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", padding: "1.25rem 1.5rem", background: "rgba(34,68,255,0.05)", border: "1px solid rgba(34,68,255,0.15)", borderRadius: "3px", flexWrap: "wrap", marginTop: "0.5rem" }}>
+                <div className="fade-in score-compare" style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1.5rem", padding: "1.25rem 1.5rem", background: "rgba(34,68,255,0.05)", border: "1px solid rgba(34,68,255,0.15)", borderRadius: "3px", flexWrap: "wrap", marginTop: "0.5rem" }}>
                   {privScore(data.risk.score) === 10 && privScore(data.improved.score) === 10 ? (
                     <div style={{
                       fontFamily: "'JetBrains Mono',monospace",
@@ -596,12 +608,12 @@ export default function ResultClient({ username, initialData, isFreshScan }: Pro
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.25rem" }}>CURRENT</div>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "1.75rem", fontWeight: 700, color: riskColor }}>{privScore(data.risk.score)}/10 {privEmoji(privScore(data.risk.score))}</div>
                   </div>
-                  <div style={{ color: "var(--text-muted)", fontSize: "1.25rem" }}>→</div>
+                  <div className="arrow-sep" style={{ color: "var(--text-muted)", fontSize: "1.25rem" }}>→</div>
                   <div style={{ textAlign: "center" }}>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.75rem", color: "var(--text-muted)", marginBottom: "0.25rem" }}>AFTER FIX</div>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "1.75rem", fontWeight: 700, color: "var(--cyan)" }}>{privScore(data.improved.score)}/10 {privEmoji(privScore(data.improved.score))}</div>
                   </div>
-                  <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.875rem", color: "var(--cyan)", fontWeight: 600, paddingLeft: "0.5rem", borderLeft: "1px solid var(--border)" }}>
+                  <div className="gain-pill" style={{ fontFamily: "'DM Sans',sans-serif", fontSize: "0.875rem", color: "var(--cyan)", fontWeight: 600, paddingLeft: "0.5rem", borderLeft: "1px solid var(--border)" }}>
                     +{Math.round(((privScore(data.improved.score) - privScore(data.risk.score)) / Math.max(privScore(data.risk.score), 1)) * 100)}%
                     <br /><span style={{ fontWeight: 400, color: "var(--text-muted)", fontSize: "0.8125rem" }}>privacy gain</span>
                   </div>
@@ -619,7 +631,7 @@ export default function ResultClient({ username, initialData, isFreshScan }: Pro
                 )}
 
                 {/* Stats */}
-                <div className="fade-in" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "0.75rem", marginBottom: "1.5rem" }}>
+                <div className="fade-in stats-3-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "0.75rem", marginBottom: "1.5rem" }}>
                   {([
                     { label: "repos scanned",  value: data.repoCount,                               color: "var(--cyan)",    border: "rgba(34,68,255,0.2)" },
                     { label: "tools detected",  value: data.tools.length,                            color: riskColor,        border: "rgba(34,68,255,0.2)" },
@@ -631,8 +643,8 @@ export default function ResultClient({ username, initialData, isFreshScan }: Pro
                       border: `1px solid ${border}`,
                       borderRadius: "4px",
                     }}>
-                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "1.75rem", fontWeight: 700, color, letterSpacing: "-0.03em" }}>{value}</div>
-                      <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.68rem", color: "var(--text-muted)", marginTop: "0.3rem", letterSpacing: "0.08em" }}>{label}</div>
+                      <div className="stat-num" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "1.75rem", fontWeight: 700, color, letterSpacing: "-0.03em" }}>{value}</div>
+                      <div className="stat-lbl" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: "0.68rem", color: "var(--text-muted)", marginTop: "0.3rem", letterSpacing: "0.08em" }}>{label}</div>
                     </div>
                   ))}
                 </div>
