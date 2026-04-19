@@ -179,7 +179,7 @@ export async function getUserReposWithPackages(username: string): Promise<Repo[]
       return {
         name: repo.name,
         language: repo.language,
-        deps: [...new Set(allDeps)],
+        deps: Array.from(new Set(allDeps)),
       };
     })
   );
