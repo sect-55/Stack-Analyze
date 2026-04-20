@@ -94,13 +94,6 @@ export default function HomePage() {
         @keyframes shimmer-bar { 0%{background-position:0% 0%} 100%{background-position:200% 0%} }
         @keyframes ping-ring   { 0%{transform:scale(1);opacity:1} 100%{transform:scale(2.2);opacity:0} }
         @keyframes float-y     { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
-        @media (max-width: 640px) {
-          .page-deco { display: none !important; }
-          .input-prefix { display: none !important; }
-          .input-pixel-icon { display: none !important; }
-          .analyze-btn { font-size: 0.8rem !important; padding: 0.6rem 0.75rem !important; }
-          .input-row { padding-left: 0.75rem !important; clip-path: polygon(0 4px,4px 4px,4px 0,calc(100% - 4px) 0,calc(100% - 4px) 4px,100% 4px,100% calc(100% - 4px),calc(100% - 4px) calc(100% - 4px),calc(100% - 4px) 100%,4px 100%,4px calc(100% - 4px),0 calc(100% - 4px)) !important; }
-        }
       `}</style>
 
 

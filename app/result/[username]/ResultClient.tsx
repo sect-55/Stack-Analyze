@@ -455,18 +455,6 @@ export default function ResultClient({ username, initialData, isFreshScan }: Pro
         @keyframes skeleton-shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}
         @keyframes shimmer-bar{0%{background-position:0% 0%}100%{background-position:200% 0%}}
         @keyframes float-y{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-        @media (max-width: 640px) {
-          .result-deco { display: none !important; }
-          .stats-3-grid { gap: 0.5rem !important; }
-          .stats-3-grid > div { padding: 0.75rem 0.375rem !important; }
-          .stat-num { font-size: 1.2rem !important; }
-          .stat-lbl { font-size: 0.6rem !important; }
-          .score-compare { flex-direction: column !important; align-items: center !important; gap: 0.75rem !important; }
-          .score-compare .arrow-sep { display: none !important; }
-          .score-compare .gain-pill { border-left: none !important; border-top: 1px solid var(--border) !important; padding-left: 0 !important; padding-top: 0.5rem !important; }
-          .result-inner { padding-left: 0 !important; padding-right: 0 !important; }
-          .nav-username { max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-        }
       `}</style>
 
       {/* Progress bar */}
