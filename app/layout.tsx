@@ -4,6 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Stack Privacy",
   description: "Scan your GitHub profile and discover which tools in your dev stack are tracking your users. Get a privacy score and swap to better alternatives.",
+  icons: { icon: "/icon.svg", shortcut: "/icon.svg" },
   openGraph: {
     title: "Stack Privacy — Exposed dev stack?",
     description: "Scan your GitHub repos and get a tracking score. Most devs don't realize what's watching them.",
